@@ -25,7 +25,23 @@ function cargarTxt(e) {
 }
 function cargarJson(e) {
   e.preventDefault();
-
+  fetch('empleados.json')
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      let html = '<ul>';
+      data.forEach((empleado) => {
+        html += `
+          <li><strong>${empleado.nombre}</strong>: ${empleado.puesto}</li>
+        `
+      })
+      html += '</ul>'
+      resultado.innerHTML = html;
+    })
+    .catch(() => {
+      console.log('No se han podido cargar los datos')
+    })
 }
 function cargarApi(e) {
   e.preventDefault();
