@@ -11,45 +11,37 @@ apiBtn.addEventListener('click', cargarApiREST)
 
 // functions
 function cargarTxt(e) {
-  e.preventDefault();
+  e.preventDefault()
 
   fetch('datos.txt')
-    .then((response) => {
-      return response.text();
-    }).then((response) => {
-      resultado.innerHTML = response
-    }).catch(() => {
-      console.log('No se han podido cargar los datos')
-    })
+    .then(response => response.text())
+    .then(response => resultado.innerHTML = response)
+    .catch(() => console.log('No se han podido cargar los datos'))
 
 }
 function cargarJson(e) {
-  e.preventDefault();
+  e.preventDefault()
   fetch('empleados.json')
-    .then((response) => {
-      return response.json()
-    })
-    .then((data) => {
-      let html = '<ul>';
-      data.forEach((empleado) => {
+    .then(response => response.json())
+    .then(data => {
+      let html = '<ul>'
+      data.forEach(empleado => {
         html += `
           <li><strong>${empleado.nombre}</strong>: ${empleado.puesto}</li>
         `
       })
       html += '</ul>'
-      resultado.innerHTML = html;
+      resultado.innerHTML = html
     })
-    .catch(() => {
-      console.log('No se han podido cargar los datos')
-    })
+    .catch(() => console.log('No se han podido cargar los datos'))
 }
 function cargarApiREST(e) {
-  e.preventDefault();
+  e.preventDefault()
   const URL_API = 'https://picsum.photos/list/'
   fetch(URL_API)
     .then(res => res.json())
     .then(data => {
-      let html = "<ul>";
+      let html = "<ul>"
       data.forEach(elm => {
         html += `
           <li>
@@ -58,10 +50,8 @@ function cargarApiREST(e) {
           </li>
         `
       })
-      html += "</ul>";
+      html += "</ul>"
       resultado.innerHTML = html
     })
-    .catch(() => {
-      console.log('No se han podido cargar los datos')
-    })
+    .catch(() => console.log('No se han podido cargar los datos'))
 }
